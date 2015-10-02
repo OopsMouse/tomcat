@@ -11,7 +11,10 @@
 # Build download URL
 tomcat_version = node['tomcat-all']['version']
 major_version = tomcat_version[0]
-download_url = "#{node['tomcat-all']['download_server']}dist/tomcat/tomcat-#{major_version}/v#{tomcat_version}/bin/apache-tomcat-#{tomcat_version}.tar.gz"
+
+if node['tomcat-all']['download_url'].empty?
+  node['tomcat-all']['download_url'] = "#{node['tomcat-all']['download_server']}dist/tomcat/tomcat-#{major_version}/v#{tomcat_version}/bin/apache-tomcat-#{tomcat_version}.tar.gz"
+end
 
 # Create group
 group node['tomcat-all']['group']
@@ -25,7 +28,7 @@ end
 
 # Download and unpack tomcat
 ark 'tomcat' do
-  url download_url
+  url node['tomcat-all']['download_url']
   version node['tomcat-all']['version']
   home_dir node['tomcat-all']['tomcat_home']
   owner node['tomcat-all']['user']

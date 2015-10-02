@@ -8,6 +8,7 @@ default['tomcat-all']['version'] = '7.0.53'
 default['tomcat-all']['tomcat_home'] = '/opt/tomcat'
 default['tomcat-all']['set_etc_environment'] = false
 default['tomcat-all']['download_server'] = 'http://archive.apache.org/'
+default['tomcat-all']['download_url'] = ''
 
 ## configuration
 default['tomcat-all']['shutdown_port'] = '8005'
